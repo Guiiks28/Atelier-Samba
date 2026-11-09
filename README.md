@@ -53,25 +53,25 @@ administré à l'aide des outils RSAT.
 
 ### Paramètres de l'environnement
 
-  Élément                         Valeur
-  ------------------------------- -------------------------------
-  Système serveur                 Debian 12
-  Rôle                            Contrôleur de domaine Samba 4
-  Nom du serveur                  `debianSRV`
-  Domaine DNS / Kerberos          `OCLOCK.LAN`
-  Nom NetBIOS du domaine          `OCLOCK`
-  Adresse IPv4 du serveur         `10.0.0.10`
-  Réseau utilisé dans l'exemple   `10.0.0.0/24`
-  Interface réseau de l'exemple   `ens18`
-  Client                          Windows 10/11 Pro
-  Administration                  RSAT
+| Élément | Valeur |
+|---|---|
+| Système serveur | Debian 12 |
+| Rôle | Contrôleur de domaine Samba 4 |
+| Nom du serveur | `debianSRV` |
+| Domaine DNS / Kerberos | `OCLOCK.LAN` |
+| Nom NetBIOS du domaine | `OCLOCK` |
+| Adresse IPv4 du serveur | `10.0.0.10` |
+| Réseau utilisé dans l'exemple | `10.0.0.0/24` |
+| Interface réseau de l'exemple | `ens18` |
+| Client | Windows 10/11 Pro |
+| Administration | RSAT |
 
 ### Ressources de la machine virtuelle
 
--   **RAM :** 4 Go
--   **CPU :** 2 vCPU
--   **Stockage :** 50 Go
--   **Hyperviseur :** Proxmox ou équivalent
+- **RAM :** 4 Go
+- **CPU :** 2 vCPU
+- **Stockage :** 50 Go
+- **Hyperviseur :** Proxmox ou équivalent
 
 Adaptez les ressources et les paramètres réseau à votre environnement.
 
@@ -220,6 +220,8 @@ sudo /usr/local/samba/bin/smbclient -L localhost -U%
 Les partages `netlogon` et `sysvol` doivent être présents sur un
 contrôleur de domaine Samba AD correctement provisionné.
 
+![Vérification des partages Samba](images/02-partages-samba-reseaudeb.png)
+
 ## 5. Configuration des services d'infrastructure
 
 ### 5.1 DNS et résolution du domaine
@@ -342,6 +344,8 @@ ping debianSRV.OCLOCK.LAN
 La réussite du ping dépend de la configuration du pare-feu ; l'échec du
 ping ne suffit donc pas, à lui seul, à conclure à une panne DNS ou AD.
 
+![Poste Windows intégré au domaine](images/05-windows-domaine.png)
+
 ### 6.2 Installation des outils RSAT
 
 Dans PowerShell lancé en tant qu'administrateur :
@@ -360,6 +364,8 @@ notamment :
 
 Les outils RSAT permettent d'administrer les services compatibles depuis
 le poste Windows ; ils ne remplacent pas le contrôleur de domaine Samba.
+
+![Administration du domaine avec RSAT](images/06-administration-rsat.png)
 
 ## 7. Partage de fichiers Samba
 
@@ -398,6 +404,8 @@ les permissions minimales nécessaires.
 > initiales donne les droits de lecture, écriture et exécution à tous
 > les utilisateurs locaux. Elle est à éviter pour un partage réel. Ne
 > l'utilisez pas comme recommandation de sécurité.
+
+![Accès au partage public depuis Windows](images/mappagepublic.png)
 
 ## 8. Automatisation avec Systemd
 
@@ -442,51 +450,9 @@ processus Samba lancé manuellement. La définition d'une unité Systemd
 doit être validée sur la version et le mode d'installation effectivement
 utilisés.
 
-## 9. Vérifications et preuves du laboratoire
+![État du service Samba systemd](images/04-service-systemd.png)
 
-Ajouter ici des captures d'écran prises pendant l'exécution réelle de
-l'atelier. Ne conserver que les étapes effectivement réalisées et
-vérifiées.
-
-  ------------------------------------------------------------------------
-  Capture à ajouter                    Ce qu'elle démontre
-  ------------------------------------ -----------------------------------
-  `ip a` sur Debian                    Adresse IP et interface réseau
-
-  `samba-tool domain info 127.0.0.1`   Informations du domaine (si la
-                                       commande fonctionne dans
-                                       l'environnement)
-
-  `systemctl status samba-ad-dc`       État du service Systemd
-
-  `smbclient -L localhost -U%`         Présence des partages Samba
-
-  `nslookup OCLOCK.LAN` depuis Windows Résolution DNS côté client
-
-  Propriétés système Windows           Appartenance au domaine
-
-  Console RSAT                         Administration du domaine depuis
-                                       Windows
-
-  Accès au partage `public`            Accès au partage avec le compte
-                                       prévu
-  ------------------------------------------------------------------------
-
-Exemple de présentation d'une capture :
-
-``` markdown
-### Vérification du contrôleur de domaine
-
-![État du service Samba](images/samba-service-status.png)
-
-Cette capture montre l'état du service Samba après son démarrage.
-```
-
-Créer un dossier `images/` à la racine du dépôt pour y ranger les
-captures. Ne pas ajouter de capture contenant des mots de passe, des
-clés, des informations personnelles ou des données sensibles.
-
-## 10. Difficultés et points de vigilance
+## 9. Difficultés et points de vigilance
 
 Les points suivants méritent une attention particulière lors d'un
 déploiement Samba AD :
@@ -504,7 +470,7 @@ déploiement Samba AD :
 -   Une configuration fonctionnelle en laboratoire doit être revue avant
     toute utilisation en production.
 
-## 11. Compétences mobilisées
+## 10. Compétences mobilisées
 
 -   Administration d'un serveur Linux Debian 12.
 -   Configuration réseau IPv4 et résolution DNS.
@@ -517,7 +483,7 @@ déploiement Samba AD :
 -   Gestion des permissions Linux et Samba.
 -   Automatisation de services avec Systemd.
 
-## 12. Bilan
+## 11. Bilan
 
 Cet atelier m'a permis d'étudier le déploiement d'un contrôleur de
 domaine Samba 4 sous Debian 12 et son interopérabilité avec un poste
