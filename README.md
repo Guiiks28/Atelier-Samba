@@ -147,6 +147,8 @@ ping -c 4 google.com
 > `10.0.0.0/24`, l'adresse de broadcast cohérente est `10.0.0.255`, et
 > non `10.0.255.255`.
 
+![Configuration réseau Debian](images/01-reseau-debian.png)
+
 ## 4. Installation de Samba 4
 
 ### 4.1 Installation des dépendances
