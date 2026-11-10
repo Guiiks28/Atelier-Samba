@@ -423,13 +423,16 @@ Exemple d'unité issu de l'atelier :
 ``` ini
 [Unit]
 Description=Samba Active Directory Domain Controller
-After=network.target remote-fs.target nss-lookup.target time-sync.target
+After=network.target network-online.target
+Wants=network-online.target
 
 [Service]
 Type=forking
+PIDFile=/usr/local/samba/var/run/samba.pid
 ExecStart=/usr/local/samba/sbin/samba
+ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
-RestartSec=10
+LimitNOFILE=16384
 
 [Install]
 WantedBy=multi-user.target
