@@ -143,9 +143,6 @@ ping -c 4 10.0.0.1
 ping -c 4 google.com
 ```
 
-> **Correction par rapport aux notes initiales :** pour le réseau
-> `10.0.0.0/24`, l'adresse de broadcast cohérente est `10.0.0.255`, et
-> non `10.0.255.255`.
 
 ![Configuration réseau Debian](images/01-reseau-debian.png)
 
