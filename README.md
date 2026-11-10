@@ -61,7 +61,7 @@ administré à l'aide des outils RSAT.
 | Domaine DNS / Kerberos | `OCLOCK.LAN` |
 | Nom NetBIOS du domaine | `OCLOCK` |
 | Adresse IPv4 du serveur | `10.0.0.10` |
-| Réseau utilisé dans l'exemple | `10.0.0.0/24` |
+| Réseau utilisé dans l'exemple | `10.0.0.0/16` |
 | Interface réseau de l'exemple | `ens18` |
 | Client | Windows 10/11 Pro |
 | Administration | RSAT |
@@ -106,13 +106,13 @@ Exemple de configuration statique pour une interface `ens18` :
 ``` ini
 allow-hotplug ens18
 iface ens18 inet static
-    address 10.0.0.10
-    netmask 255.255.255.0
-    network 10.0.0.0
-    broadcast 10.0.0.255
-    gateway 10.0.0.1
-    dns-nameservers 10.0.0.1
-    dns-search OCLOCK.LAN
+  address 10.0.0.10
+  netmask 255.255.0.0
+  network 10.0.0.0
+  broadcast 10.0.255.255
+  gateway 10.0.0.1
+  dns-nameservers 8.8.8.8
+  dns-search OCLOCK.LAN
 ```
 
 Les valeurs de passerelle et de DNS amont sont des exemples à adapter au
@@ -314,7 +314,7 @@ d'authentification.
 ### 5.4 Zone DNS inversée
 
 Créer la zone de recherche inversée correspondant au réseau
-`10.0.0.0/24` :
+`10.0.0.0/16` :
 
 ``` bash
 sudo /usr/local/samba/bin/samba-tool dns zonecreate debianSRV 0.0.10.in-addr.arpa -U administrator
