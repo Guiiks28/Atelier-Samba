@@ -203,6 +203,9 @@ Pendant l'assistant, renseigner les paramètres du domaine :
 Ne jamais publier de mot de passe, de secret Kerberos ou de donnée
 d'identification dans le dépôt GitHub.
 
+![État du service Samba systemd](images/04-service-systemd.png)
+
+
 ### 4.4 Premier démarrage et vérification des partages système
 
 Démarrer Samba pour le test :
@@ -449,8 +452,6 @@ redémarrage, notamment son état, ses journaux et l'absence d'un second
 processus Samba lancé manuellement. La définition d'une unité Systemd
 doit être validée sur la version et le mode d'installation effectivement
 utilisés.
-
-![État du service Samba systemd](images/04-service-systemd.png)
 
 ## 9. Difficultés et points de vigilance
 
