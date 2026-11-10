@@ -1,6 +1,6 @@
-# Atelier Samba 4 --- Déployer un contrôleur de domaine Active Directory sous Debian 12
+# Atelier Samba 4 - Déployer un contrôleur de domaine Active Directory sous Debian 12
 
-> **Projet de laboratoire --- Formation AIS**\
+> **Projet de lab - Formation AIS**\
 > Déploiement d'un contrôleur de domaine Samba 4 sous Debian 12, puis
 > intégration et administration d'un poste Windows avec les outils RSAT.
 
