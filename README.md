@@ -447,6 +447,9 @@ sudo systemctl start samba-ad-dc.service
 sudo systemctl status samba-ad-dc.service
 ```
 
+![Vérification automatisation au démarrage](images/automatisationsystemd.png)
+
+
 **Point de validation :** vérifier le comportement réel du service après
 redémarrage, notamment son état, ses journaux et l'absence d'un second
 processus Samba lancé manuellement. La définition d'une unité Systemd
